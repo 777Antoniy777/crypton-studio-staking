@@ -1,0 +1,21 @@
+import { Contract } from "ethers";
+import { task } from "hardhat/config";
+
+import { TaskArguments } from "hardhat/types";
+import { getContractAddress } from "../utils/get-contract-address";
+
+task("transfer", "Transfer value to receiver address")
+  .addParam("receiver", "Receiver address")
+  .addParam("value", "Value of tokens")
+  .setAction(async (taskArgs: TaskArguments, { ethers }) => {
+    const { receiver, value } = taskArgs;
+    const parsedAddress = getContractAddress();
+
+    if (parsedAddress) {
+      const Token: Contract = await ethers.getContractAt("Token", parsedAddress.address);
+      const decimals = await Token.decimals();
+      const transformedValue = ethers.BigNumber.from(10).pow(decimals).mul(value);
+
+      await Token.transfer(receiver, transformedValue);
+    }
+  });

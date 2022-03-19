@@ -1,0 +1,23 @@
+{
+  "useTabs": false,
+  "printWidth": 120,
+  "tabWidth": 2,
+  "singleQuote": false,
+  "semi": true,
+  "bracketSpacing": true,
+  "requirePragma": false,
+  "insertPragma": false,
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "ignore",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.sol",
+      "options": {
+        "tabWidth": 4,
+        "useTabs": false,
+        "explicitTypes": "always"
+      }
+    }
+  ]
+}
